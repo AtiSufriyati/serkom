@@ -1,0 +1,273 @@
+
+
+/* TEMPLATE AUTH */
+
+/* Show in Large desktops and laptops */
+@media (min-width: 1200px) {
+
+    .cover1{
+        background: url('../themes/images/background/cover1.png') no-repeat center center fixed;
+    }
+
+    .cover2{
+        background: url('../themes/images/background/cover2.png') no-repeat center center fixed;
+    }
+
+    .cover3{
+        background: url('../themes/images/background/cover3.png') no-repeat center center fixed;
+    }
+
+    .cover-error{
+        background: url('../themes/images/background/page_not_found.png') no-repeat center center fixed;
+    }
+
+    .cover-maintainance{
+        background: url('../themes/images/background/under_maintenance.png') no-repeat center center fixed;
+    }
+
+    .auth-img-bottom{
+        margin-bottom: 4.30rem
+    }
+
+    .auth-btn{
+        margin-top: 2.50rem;
+    }
+
+    .auth-link.left{
+        text-align: left;
+    }
+
+    .auth-link.right{
+        text-align: right;
+    }
+}
+
+/*Hide in Other Small Devices */
+
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .cover1{
+        background: url('../themes/images/background/cover1.png') no-repeat center center fixed;
+    }
+
+    .cover2{
+        background: url('../themes/images/background/cover2.png') no-repeat center center fixed;
+    }
+
+    .cover3{
+        background: url('../themes/images/background/cover3.png') no-repeat center center fixed;
+    }
+
+    .cover-error{
+        background: url('../themes/images/background/page_not_found.png') no-repeat center center fixed;
+    }
+
+    .cover-maintainance{
+        background: url('../themes/images/background/under_maintenance.png') no-repeat center center fixed;
+    }
+
+    .auth-img-bottom{
+        margin-bottom: 2.30rem
+    }
+
+    .auth-btn{
+        margin-top: 2.30rem;
+    }
+
+    .auth-link.left{
+        text-align: left;
+    }
+
+    .auth-link.right{
+        text-align: right;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .cover1,.cover2,.cover3{
+        background: url('../themes/images/background/bg_mobile.png') no-repeat center center fixed;
+    }
+
+    .cover-error{
+        background: url('../themes/images/background/page_not_found.png') no-repeat center center fixed;
+    }
+
+    .cover-maintainance{
+        background: url('../themes/images/background/under_maintenance.png') no-repeat center center fixed;
+    }
+
+    .auth-img-bottom{
+        margin-bottom: 2.30rem
+    }
+
+    .auth-btn{
+        margin-top: 2.30rem;
+    }
+
+    .auth-link.left{
+        text-align: left;
+    }
+
+    .auth-link.right{
+        text-align: right;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    .cover1,.cover2,.cover3{
+        background: url('../themes/images/background/bg_mobile.png') no-repeat center center fixed;
+    }
+
+    /* .cover-error{
+        background: url('../images/background/page_not_found.png') no-repeat center center fixed;
+    } */
+
+    .auth-img-bottom{
+        margin-bottom: 2.30rem
+    }
+
+    .auth-btn{
+        margin-top: 2.30rem;
+    }
+
+    .auth-link.left,.auth-link.right{
+        text-align: center;
+    }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+    .cover1,.cover2,.cover3{
+        background: url('../themes/images/background/bg_mobile.png') no-repeat center center fixed;
+    }
+
+    .auth-img-bottom{
+        margin-bottom: 2.30rem
+    }
+
+    .auth-btn{
+        margin-top: 2.30rem;
+    }
+
+    .auth-link.left,.auth-link.right{
+        text-align: center;
+    }
+}
+
+.bg-auth{
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: #f49022;
+}
+
+.bg-error{
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: #ffffff;
+}
+
+.select-lg.select2-selection--single {
+    border-radius: 10px;
+    border: solid 1px #f49022;
+    box-shadow: 4.7px 5.2px 5px 0.1px rgba(0, 0, 0, 0.15);
+}
+
+.auth-rounded{
+    border-radius: 10px;
+    box-shadow: 4.7px 5.2px 5px 0.1px rgba(0, 0, 0, 0.15);
+    border: solid 1px #f49022;
+}
+
+.auth-input-rounded {
+    height: 40px;
+}
+
+.auth-input-icon {
+    height: 40px;
+    background-color: #FFFFFF;
+}
+
+img.auth-logo{
+    width: 195px;
+    object-fit: contain;
+}
+
+img.auth-logo.left{
+    width: 70px;
+}
+
+img.auth-logo.right{
+    width: 130px;
+    padding-top:20px;
+}
+
+i.auth-icon-bg{
+    font-size: 13px;
+    padding: 0.32rem;
+}
+
+.auth-icon-bg{
+    border-radius: 5px;
+    background-color: #f49022;
+}
+
+.auth-btn{
+    width: 120px;
+    border-radius: 10px;
+    box-shadow: 4.7px 5.2px 5px 0.1px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #f49022;
+}
+
+.btn-errors{
+    width: 120px;
+    border-radius: 5px;
+    box-shadow: 4.7px 5.2px 5px 0.1px rgba(0, 0, 0, 0.15);
+    background-color: #f49022;
+
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.auth-btn:hover,.auth-btn:focus{
+    background-color:#f49022;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.btn-errors:hover,.btn-errors:focus{
+    background-color:#ffffff;
+    color: #f49022;
+    border: 1px solid #f49022;
+}
+
+.auth-link a{
+    color: #ffffff;
+}
+
+.auth-link a:hover{
+    color: #eeeeee;
+    text-decoration: underline
+}

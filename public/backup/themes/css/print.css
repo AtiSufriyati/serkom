@@ -1,0 +1,7 @@
+@page
+{
+    size: A4;   /* auto is the initial value */
+
+    /* this affects the margin in the printer settings */
+    margin: 20mm 15mm 2mm 15mm;
+}

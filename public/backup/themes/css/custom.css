@@ -1,0 +1,212 @@
+/*
+    130819 - Fakhri
+*/
+.lined-heading {
+	position: relative;
+	margin-top: 0;
+	margin-bottom: 25px;
+	text-align: center;
+	display: block;
+}
+h1.lined-heading:before, h2.lined-heading:before, h3.lined-heading:before, h4.lined-heading:before, h5.lined-heading:before, h6.lined-heading:before {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	display: block;
+	width: 100%;
+	height: 1px;
+	border-top: 2px solid #ccc;
+	content: "";
+}
+h1.lined-heading span, h2.lined-heading span, h3.lined-heading span, h4.lined-heading span, h5.lined-heading span, h6.lined-heading span {
+	position: relative;
+	z-index: 1;
+	padding: 0 20px;
+	background: #fff;
+	display: inline-block;
+}
+
+.text_on_img { 
+    position: relative; 
+    width: 100%; /* for IE 6 */
+ }
+ 
+ .text_on_img h5 { 
+    position: absolute; 
+    top: 175px; 
+    left: 0; 
+    width: 100%; 
+ }
+
+ .text_on_img h5 span { 
+    color: white; 
+    font: bold 24px/45px Helvetica, Sans-Serif; 
+    letter-spacing: -1px;  
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px; 
+ }
+/*------------------*/
+
+/* Visit https://nicolaskadis.info/projects/pure-css-flip-cards-using-bootstrap-4-and-css-grid-no-js for an explanation */
+
+  
+  /* Flip Cards CSS */
+  .card-container {
+	display: grid;
+	perspective: 700px;
+  }
+  
+  .card-flip {
+	display: grid;
+	grid-template: 1fr / 1fr;
+	grid-template-areas: "frontAndBack";
+	transform-style: preserve-3d;
+	transition: all 0.7s ease;
+  }
+  
+  .card-flip div {
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+  }
+  
+  .front {
+	grid-area: frontAndBack;
+  }
+  
+  .back {
+	grid-area: frontAndBack;
+	transform: rotateY(-180deg);
+  }
+  
+  .card-container:hover .card-flip {
+	transform: rotateY(180deg);
+  }
+
+/*Image animation effect*/
+  .card-img:hover{ 
+	box-shadow: 1px 8px 20px #f49022;
+   -webkit-transition:  box-shadow .6s ease-in;
+ }
+
+.shine figure {
+	position: relative;
+}
+.shine figure::before {
+	position: absolute;
+	top: 0;
+	left: -75%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 50%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+}
+.shine figure:hover::before {
+	-webkit-animation: shine 2.75s;
+	animation: shine 2.75s;
+}
+@-webkit-keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+@keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+
+/* select */
+#select-categories{
+	color:#f49022;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 600;
+	background-color: #F5F5F5;
+}
+
+/* for icon white */
+#white-icon{
+	color: white;
+}
+
+/* card search faq */
+.card-search-faq{
+	margin-left: -2.50rem;
+	margin-right: -2.50rem;
+}
+
+.search-keyword-rounded{
+	width: 100%;
+	box-shadow: 4.7px 5.2px 5px 0.1px rgba(0,0,0,.15);
+    background-color: #fff;
+	border-bottom-right-radius:50px;
+	border-top-right-radius:50px;
+	border-bottom-left-radius:50px;
+	border-top-left-radius:50px;
+	border: none;
+}
+
+.custom-select-faq{
+	box-shadow: 4.7px 5.2px 5px 0.1px rgba(0,0,0,.15);
+	background-color: #fff;
+	border-bottom-right-radius:50px;
+	border-top-right-radius:50px;
+	border-bottom-left-radius:50px;
+	border-top-left-radius:50px;
+	border: none;
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJTb2xpZCIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBjbGFzcz0iIj48Zz48cGF0aCBkPSJtNDAwIDIxNmEyMy45MjggMjMuOTI4IDAgMCAxIC0xNi45NzEtNy4wMjlsLTEyNy4wMjktMTI3LjAzLTEyNy4wMjkgMTI3LjAzYTI0IDI0IDAgMCAxIC0zMy45NDItMzMuOTQybDE0NC0xNDRhMjQgMjQgMCAwIDEgMzMuOTQyIDBsMTQ0IDE0NGEyNCAyNCAwIDAgMSAtMTYuOTcxIDQwLjk3MXptLTEyNy4wMjkgMjY0Ljk3MSAxNDQtMTQ0YTI0IDI0IDAgMCAwIC0zMy45NDItMzMuOTQybC0xMjcuMDI5IDEyNy4wMy0xMjcuMDI5LTEyNy4wM2EyNCAyNCAwIDAgMCAtMzMuOTQyIDMzLjk0MmwxNDQgMTQ0YTI0IDI0IDAgMCAwIDMzLjk0MiAweiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojRjQ5MDIyIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPjwvZz4gPC9zdmc+") no-repeat right 0.75rem center/15px 17px;
+  	background-color: #fff;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	text-align:center;
+	font-size: 11px;
+}
+
+.form-control-btn {
+	position: absolute;
+	top: 0;
+	right: 5px;
+	color: #333;
+	padding-left: 0.875rem;
+	padding-right: 0.875rem;
+	line-height: 2.25003rem;
+	min-width: 1rem; 
+}
+  
+.faq-btn {
+	border-radius: 40px;
+	width:80px;
+	background-color:#f49022;
+	font-size:12px;
+	font-weight:500;
+	font-style:normal;
+	font-stretch:normal;
+	line-height:normal;
+	letter-spacing:normal;
+	text-align:center;
+	color:#F5F5F5;
+   }
+
+.faq-btn:hover {
+	background-color: #d8760e;
+  }
+
+.bg-faq {
+	margin-left: -2.50rem;
+	margin-right: -2.50rem;
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	background: url("../themes/images/view_faq_bg.jpg") center right;
+}
+
+.overflow-x-500 {
+	position: static;
+	height: 500px;
+	overflow-x: hidden;
+}
