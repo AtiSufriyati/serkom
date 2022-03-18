@@ -2,10 +2,12 @@
     <thead>
         <tr>
             <th class="text-center">NO</th>
-            <th class="text-center">DATE</th>
+            <th class="text-center">CUSTOMER ID</th>
             <th class="text-center">MONTH</th>
             <th class="text-center">ADMIN CHARGE</th>
             <th class="text-center">TOTAL</th>
+            <th class="text-center">DATE</th>
+
             <th class="text-center">ACTION</th>
 
         </tr>
@@ -20,30 +22,21 @@
         @foreach($payment as $val)
             <tr>
                 <td class="text-center" >{{$no}}</td>
+                <td class="text-center">{{$val->CustomerID}}</td>
+                <td class="text-center">{{$val->Month}}</td>
+                <td class="text-right">{{$val->AdminCharge}}</td>
+                <td class="text-right">{{$val->TotalPayment}}</td>
                 <td class="text-center" >{{$val->PaymentDate}}</td>
-                <td >{{$val->Month}}</td>
-                <td >{{$val->AdminCharge}}</td>
-                <td >{{$val->TotalPayment}}</td>
                 <td class="text-center">
-                    <div class="btn-group">
-                        <div class="dropdown">
-                            <button class="btn btn-info me-1" type="button"
-                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="bi bi-life-preserver"></i>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" data-action="view" data-id="{{$val->IndexPrice}}" onclick="btn_action(this)">View</a>
-                                <a class="dropdown-item" data-action="edit" data-id="{{$val->IndexPrice}}" onclick="btn_action(this)">Edit</a>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="btn btn-info me-1" type="button" data-index ="{{$val->IndexPayment}}" onclick="viewPayment(this)">
+                        view
+                    </button>
                 </td>
             </tr>
         <?php $no++; ?>
         @endforeach
         <tr>
-            <td colspan="8" class="text-center table-footer"><span class="badge bg-info"><b>{{count($price)}} DATA FOUND </b></span></td>
+            <td colspan="8" class="text-center table-footer"><span class="badge bg-info"><b>{{count($payment)}} DATA FOUND </b></span></td>
         </tr>
         @endif
     </body>

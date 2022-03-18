@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\MasterUser;
+use Session;
+use Auth;
 
 use Response;
 
@@ -20,7 +22,7 @@ class AuthController extends Controller
     }
 
     #region Login
-    public function login(){
+    public function login(Request $request){
         try{
             return view('auth.login');
         }catch(Exception $e){
@@ -31,8 +33,9 @@ class AuthController extends Controller
         try{
             $email = $this->request->email;
             $password = $this->request->password;
-            $check = MasterUser::where([['Email',$email],['Password',$password]])->exists();
-            if($check){
+            $check = MasterUser::where([['Email',$email],['Password',$password]]);
+            if($check->exists()){
+                // https://www.youtube.com/watch?v=idw3k9EvmcE // make session tutorial
                 $data = [
                     'respon' => 'success',
                     'flag' => 'loged',

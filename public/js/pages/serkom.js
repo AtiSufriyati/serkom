@@ -479,3 +479,26 @@ $(document).on("click", ".sidebar-item" , function(event){
     var route_url = $('input[name=route_url]').val();
     $('.menu-'+route_url).addClass('active');
 });
+
+function formatCurrency(harga,desimal=0){
+	harga=parseFloat(harga);
+	harga=harga.toFixed(desimal);
+
+	s = addSeparatorsNF(harga, '.', '.', ',');
+	return s;
+}
+
+function addSeparatorsNF(nStr, inD, outD, sep){
+	nStr += '';
+	var dpos = nStr.indexOf(inD);
+	var nStrEnd = '';
+	if (dpos != -1) {
+		nStrEnd = outD + nStr.substring(dpos + 1, nStr.length);
+		nStr = nStr.substring(0, dpos);
+	}
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(nStr)) {
+		nStr = nStr.replace(rgx, '$1' + sep + '$2');
+	}
+	return nStr + nStrEnd;
+}

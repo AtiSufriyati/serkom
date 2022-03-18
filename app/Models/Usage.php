@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Carbon\Carbon;
+
 
 class Usage extends Model
 {
@@ -42,11 +44,16 @@ class Usage extends Model
     //     }
     // }
 
-    public function get_usage($CustomerID,$Month){
+    public function get_usage($CustomerID){
+        $Month = strtoupper(Carbon::now()->format('F'));
+
         $Usage = DB::table($this->table)
-                ->where('CustomerID',$CustomerID)
-                ->where('Month',$Month)
-                ->orderby('CustomerID', 'asc')
+                ->join('Master_Customer','Master_Customer.CustomerID','=','Usage.CustomerID')
+                ->join('Master_Price','Master_Price.IndexPrice','=','Master_Customer.IndexPrice')
+                ->join('Bill','Bill.IndexUsage','=','Usage.IndexUsage')
+                ->where('Master_Customer.CustomerID',$CustomerID)
+                ->where('Usage.Month',$Month)
+                ->orderby('Master_Customer.CustomerID', 'asc')
                 ->get();
         $hasil = json_decode(json_encode($Usage), true);
         return $hasil;

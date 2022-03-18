@@ -85,24 +85,24 @@ function btn_close(param){
     $(param).modal('hide');
 }
 
-function get_payment(id){
-    let url = './payment/get_payment';
-    let data = {
-        IndexPrice: id,
-    }
-    let promise = requestGet(url, data, '.load-modal');
-    promise.done((response) => {
-        $.each(response.Price, function (key, result) {
-            $('input[name=PriceID]').val(result.PriceID);
-            $('input[name=Energy]').val(result.Energy);
-            $('input[name=PricePerKWH]').val(result.PricePerKWH);
-        });
-        myLoad('end', '.load-modal');
-    }).fail((response) => {
-        myLoad('end', '.load-modal');
-        errorMessage(response);
-    });
-}
+// function get_payment(id){
+//     let url = './payment/get_payment';
+//     let data = {
+//         IndexPrice: id,
+//     }
+//     let promise = requestGet(url, data, '.load-modal');
+//     promise.done((response) => {
+//         $.each(response.Price, function (key, result) {
+//             $('input[name=PriceID]').val(result.PriceID);
+//             $('input[name=Energy]').val(result.Energy);
+//             $('input[name=PricePerKWH]').val(result.PricePerKWH);
+//         });
+//         myLoad('end', '.load-modal');
+//     }).fail((response) => {
+//         myLoad('end', '.load-modal');
+//         errorMessage(response);
+//     });
+// }
 
 function search(page){
     let url = './payment';
@@ -124,21 +124,85 @@ function search(page){
 function get_usage(){
     var url = './payment/get_usage';
     var data = {
-        CustomerID: $('input[name=CustomerID]').val(),
-        Month: $('select[name=Month]').val(),
+        CustomerID: $('input[name=search_customerid]').val(),
     }
-    var no = 1 ;
     var promise = requestGet(url, data, '.table-usage');
     promise.done((response) => {
         console.log(response.Usage);
-        // $.each(response.Usage, function (key, result) {
-        //     content += '<tr><td class="text-center">'+ no++ +'</td><td class="text-center">'+result.CustomerID+'</td><td class="text-center">'+result.Month+'</td><td class="text-center">'+result.StartMeter+'</td><td class="text-center">'+result.EndMeter+'</td><td class="text-danger text-center"><b>x</b></td></tr>';            
-        // });
-        // $('#usage_list').empty().append(content);
+        $.each(response.Usage, function (key, result) {
+            var AdminCharge = 2500;
+            var Price = (result.EndMeter-result.StartMeter)*result.PricePerKWH;
+            var TotalPayment = AdminCharge +parseFloat(Price);
+            $('input[name=CustomerID]').val(result.CustomerID);
+            $('input[name=CustomerName]').val(result.CustomerName);
+            $('input[name=AdminCharge]').val(formatCurrency(AdminCharge));
+            $('input[name=Periode]').val(result.Month + '/' + result.Year);
+            $('input[name=StandMeter]').val(result.StartMeter + ' - ' + result.EndMeter);
+            $('input[name=PriceDaya]').val(result.PriceID + ' - ' + result.Energy);
+            $('input[name=Price]').val(formatCurrency(Price));
+            $('input[name=TotalPayment]').val(formatCurrency(TotalPayment));
+            $('#Status').text(result.Status);
+            $('input[name=IndexBill]').val(result.IndexBill);
+            if(result.Status == 'PAID'){
+                $('#div_btn_submit').addClass('d-none');
+            }else{
+                $('#div_btn_submit').removeClass('d-none');
+            }
+        });
         myLoad('end', '.table-usage');
     }).fail((response) => {
         myLoad('end', '.table-usage');
         errorMessage(response);
     });
 }
+
+function viewPayment(data){
+    $('#modal-form-viewpayment').modal('show');
+        // $('input[name=action]').val(action);
+        // $('.modal-title').html('ADD PAYMENT');
+        // $('input[name=PriceID]').empty().prop('readonly',false);
+        // $('input[name=Energy]').empty().prop('readonly',false);
+        // $('input[name=PricePerKWH]').empty().prop('readonly',false);
+        // $('.btn-submit').removeClass('d-none');
+
+
+    var Index = data.getAttribute('data-index');
+    var url = './payment/get_payment';
+    var data = {
+        IndexPayment: Index,
+    }
+    var promise = requestGet(url, data, '.table-usage');
+    promise.done((response) => {
+        $.each(response.Payment, function (key, result) {
+            console.log(result);
+            var AdminCharge = 2500;
+            var Price = (result.EndMeter-result.StartMeter)*result.PricePerKWH;
+            var TotalPayment = AdminCharge +parseFloat(Price);
+            $('input[name=view_CustomerID]').val(result.CustomerID);
+            $('input[name=view_CustomerName]').val(result.CustomerName);
+            $('input[name=view_AdminCharge]').val(formatCurrency(AdminCharge));
+            $('input[name=view_Periode]').val(result.Month + '/' + result.Year);
+            $('input[name=view_StandMeter]').val(result.StartMeter + ' - ' + result.EndMeter);
+            $('input[name=view_PriceDaya]').val(result.PriceID + ' - ' + result.Energy);
+            $('input[name=view_Price]').val(formatCurrency(Price));
+            $('input[name=view_TotalPayment]').val(formatCurrency(TotalPayment));
+            $('#Status').text(result.Status);
+            $('input[name=view_IndexBill]').val(result.IndexBill);
+        });
+        myLoad('end', '.table-usage');
+    }).fail((response) => {
+        myLoad('end', '.table-usage');
+        errorMessage(response);
+    });
+}
+
+function PrintPayment(){
+    let div = '#printArea'
+    var printContents = document.getElementById('printArea').innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
+
 

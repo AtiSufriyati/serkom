@@ -31,7 +31,7 @@ class Payment extends Model
             if(request()->ajax()){
                 $sql =  $sql->where(function($query) use ($keyword){
                     $query->where('Month', 'like', '%' .$keyword. '%')
-                    ->orwhere('Month', 'like', '%' .$keyword. '%');
+                    ->orwhere('CustomerID', 'like', '%' .$keyword. '%');
                 });
             }
             $sql = $sql->orderBy('IndexPayment','ASC');
@@ -41,6 +41,20 @@ class Payment extends Model
         }catch(Exception $e){
             throw $e;
         }
+    }
+
+    public function get_payment($IndexPayment){
+
+        $Payment = DB::table($this->table)
+                ->join('Master_Customer','Master_Customer.CustomerID','=','Payment.CustomerID')
+                ->join('Master_Price','Master_Price.IndexPrice','=','Master_Customer.IndexPrice')
+                ->join('Bill','Bill.IndexBill','=','Payment.IndexBill')
+                ->join('Usage','Usage.IndexUsage','=','Bill.IndexUsage')
+                ->where('Payment.IndexPayment',$IndexPayment)
+                ->orderby('Master_Customer.CustomerID', 'asc')
+                ->get();
+        $hasil = json_decode(json_encode($Payment), true);
+        return $hasil;
     }
 
 }

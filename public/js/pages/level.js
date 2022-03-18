@@ -42,7 +42,6 @@ $(document).ready(function(){
 
 function btn_action(data){
     var action = data.getAttribute("data-action");
-    alert(action);
     if(action == 'search'){
         search(1);
     }else if(action == 'add'){
@@ -72,7 +71,6 @@ function btn_action(data){
         var id = data.getAttribute('data-id');
         $('input[name=IndexLevel]').val(id);
         get_level(id);
-        alert(id);
     }
 }
 function btn_close(param){
